@@ -173,7 +173,7 @@ discordClient.on('ready', () => {
 })
 discordClient.login(DISCORD_TOK)
 
-const PREFIX = '!';
+const PREFIX = '.';
 const _CMD_HELP        = PREFIX + 'help';
 const _CMD_JOIN        = PREFIX + 'join';
 const _CMD_LEAVE       = PREFIX + 'leave';
@@ -283,16 +283,16 @@ discordClient.on('message', async (msg) => {
 function getHelpString() {
     let out = '**VOICE COMMANDS:**\n'
         out += '```'
-        out += 'music help\n'
-        out += 'music play [random, favorites, <genre> or query]\n'
-        out += 'music skip\n'
-        out += 'music pause/resume\n'
-        out += 'music shuffle\n'
-        out += 'music genres\n'
-        out += 'music set favorite\n'
-        out += 'music favorites\n'
-        out += 'music list\n'
-        out += 'music clear list\n';
+        out += 'bot help\n'
+        out += 'bot play [random, favorites, <genre> or query]\n'
+        out += 'bot skip\n'
+        out += 'bot pause/resume\n'
+        out += 'bot shuffle\n'
+        out += 'bot genres\n'
+        out += 'bot set favorite\n'
+        out += 'bot favorites\n'
+        out += 'bot list\n'
+        out += 'bot get out\n';
         out += '```'
 
         out += '**TEXT COMMANDS:**\n'
@@ -392,7 +392,7 @@ function process_commands_query(query, mapKey, userid) {
 
     let out = null;
 
-    const regex = /^music ([a-zA-Z]+)(.+?)?$/;
+    const regex = /^bot ([a-zA-Z]+)(.+?)?$/;
     const m = query.toLowerCase().match(regex);
     if (m && m.length) {
         const cmd = (m[1]||'').trim();
@@ -417,8 +417,8 @@ function process_commands_query(query, mapKey, userid) {
             case 'resume':
                 out = _CMD_RESUME;
                 break;
-            case 'clear':
-                if (args == 'list')
+            case 'get':
+                if (args == 'out')
                     out = _CMD_CLEAR;
                 break;
             case 'list':
